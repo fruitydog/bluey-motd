@@ -25,7 +25,6 @@ SYS_MAIN_IP=$(ipconfig getifaddr en0)
 SYS_PUBLIC_IP=$(dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d '"')
 DISK_SPACE=$(df -h | grep ' /$' | awk '{print "Used/Total Disk Space: " $3 "/" $2}')
 PACKAGE_UPDATES=$(brew outdated)
-FORTUNE=$(fortune)
 
 # Get RAM information
 TOTAL_RAM=$(sysctl hw.memsize | awk '{print $2/1024/1024/1024 " GB"}')
@@ -37,7 +36,7 @@ CPU_USAGE=$(top -l 1 | awk '/CPU usage:/ {print $3}' | sed 's/$/%/')
 # Combine all information into one variable
 ALL_INFO="Hostname: ${HOSTNAME}\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\nCurrent User: ${CURRENT_USER}\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\nUptime: ${UPTIME}\xA0\xA0\xA0\xA0\xA0\n\nSystem Main IP: ${SYS_MAIN_IP}\n\xA0\xA0\xA0\xA0\nSystem Public 
 IP: ${SYS_PUBLIC_IP}\xA0\n\n${DISK_SPACE}\xA0\nUsed/Total RAM: ${USED_RAM}/${TOTAL_RAM}\xA0\xA0\xA0\xA0\nCPU Usage: ${CPU_USAGE}\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\n\nPackage Updates: 
-${PACKAGE_UPDATES}\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\n\n${FORTUNE}"
+${PACKAGE_UPDATES}\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\n"
 
 # Use the random .cow file with cowsay
 cowsay_output=$(printf "$ALL_INFO" | cowsay -f "$file")
